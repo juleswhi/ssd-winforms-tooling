@@ -6,5 +6,5 @@
 public abstract class DefaultState : IState
 {
     public virtual void State(State state)
-    {} 
+    { }
 }

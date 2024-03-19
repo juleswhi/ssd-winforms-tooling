@@ -7,17 +7,17 @@ public static class FormManager
     #region State Management
     public static State GlobalState { get; set; } = new State();
 
-    public static Forms.formMaster GetActiveForm() 
+    public static Forms.formMaster GetActiveForm()
     {
         Form? active = Form.ActiveForm;
 
-        if(active is null)
+        if (active is null)
         {
             // Create form
             return CreateForm<Forms.formMaster>()!;
         }
 
-        if(active is Forms.formMaster master)
+        if (active is Forms.formMaster master)
         {
             return master;
         }
@@ -38,7 +38,7 @@ public static class FormManager
 
         Panel? formHolder = GetActiveForm().Controls.OfType<Panel>().FirstOrDefault();
 
-        if(formHolder is null)
+        if (formHolder is null)
         {
             return;
         }
@@ -64,7 +64,7 @@ public static class FormManager
     {
         T instance = Activator.CreateInstance<T>();
 
-        if(instance is null)
+        if (instance is null)
         {
             return CreateFormInstace<T>();
         }
@@ -76,7 +76,7 @@ public static class FormManager
     {
         var method = typeof(IState).GetMethods()[0];
 
-        if(method is not null && typeof(IState).IsAssignableFrom(typeof(T)))
+        if (method is not null && typeof(IState).IsAssignableFrom(typeof(T)))
         {
             method!.Invoke(instance, [state]);
         }

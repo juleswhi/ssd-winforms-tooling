@@ -36,7 +36,7 @@ public static class HashTools
             HashAlgorithmName.SHA512,
             64);
 
-        if(Encoding.UTF8.GetString(hashed) == user.Password.Value.Hashed)
+        if (Encoding.UTF8.GetString(hashed) == user.Password.Value.Hashed)
         {
             return true;
         }

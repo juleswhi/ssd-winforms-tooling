@@ -31,7 +31,7 @@ public static class Scraper
         scrapeType ??= Config.Type;
         assembly ??= Assembly.GetCallingAssembly();
 
-        if(!File.Exists(Config.Path))
+        if (!File.Exists(Config.Path))
         {
             File.Create(Config.Path);
         }
@@ -41,7 +41,7 @@ public static class Scraper
 
         using StreamWriter sw = new(Config.Path, true);
 
-        if(sw is null)
+        if (sw is null)
         {
             return;
         }
@@ -51,7 +51,7 @@ public static class Scraper
         Type form = typeof(Form);
         List<Type> forms = types.Where(x => x.IsSubclassOf(form) || x == form).ToList();
 
-        foreach(Type type in forms)
+        foreach (Type type in forms)
         {
             var instance = Activator.CreateInstance(type);
 
@@ -61,14 +61,14 @@ public static class Scraper
 
             var controlProp = type.GetProperty("Controls");
 
-            if(controlProp is null)
+            if (controlProp is null)
             {
                 continue;
             }
 
             Control.ControlCollection? controls = controlProp.GetValue(instance) as Control.ControlCollection;
 
-            if(controls is null)
+            if (controls is null)
             {
                 continue;
             }
@@ -80,16 +80,16 @@ public static class Scraper
                 _ => Config.ScrapeFilter.ToImmutableHashSet()
             };
 
-            if(filter is null)
+            if (filter is null)
             {
                 continue;
             }
 
-            foreach(Control control in controls)
+            foreach (Control control in controls)
             {
                 sw!.WriteLine($"{control.Name}:");
 
-                foreach(var str in GetInformation(control, filter))
+                foreach (var str in GetInformation(control, filter))
                 {
                     sw!.WriteLine(str);
                 }
@@ -101,7 +101,7 @@ public static class Scraper
         }
         GC.Collect();
     }
-    
+
 
     /// <summary>
     /// Gets the property information of a control, and filters it by the appropriate hashset
@@ -114,9 +114,9 @@ public static class Scraper
     {
         var props = control.GetType().GetProperties();
 
-        foreach(var prop in props)
+        foreach (var prop in props)
         {
-            if(filter is null || !filter.Contains(prop.Name))
+            if (filter is null || !filter.Contains(prop.Name))
             {
                 continue;
             }
@@ -127,7 +127,7 @@ public static class Scraper
             {
                 str = $"\t\t{prop.Name}: {PrettyPrint(prop.GetMethod?.Invoke(control, []))}";
             }
-            catch(Exception)
+            catch (Exception)
             {
                 continue;
             }
@@ -166,6 +166,8 @@ public static class Scraper
     /// Overwrites contents of a file with null text
     /// </summary>
     /// <param name="path">The path to the file</param>
-    private static void ClearFile(string path) => File.WriteAllText(path, "");
-
+    private static void ClearFile(string path)
+    {
+        File.WriteAllText(path, "");
+    }
 }

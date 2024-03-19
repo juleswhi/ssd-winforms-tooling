@@ -10,11 +10,11 @@ namespace UserSystem;
 public abstract class UserBase : IEquatable<UserBase>, IEquatable<string>, IComparable<UserBase>, IComparable<int>
 {
     // Properties that every user should have
-    public virtual string? Username { get; set; } 
+    public virtual string? Username { get; set; }
     public virtual Password? Password { get; set; }
-    public virtual MailAddress? Email { get; set; } 
+    public virtual MailAddress? Email { get; set; }
     public virtual DateTime? DOB { get; set; }
-    public virtual string[]? FullName { get; set; } 
+    public virtual string[]? FullName { get; set; }
 
 
     public static string UserPath = "users.json";
@@ -24,8 +24,16 @@ public abstract class UserBase : IEquatable<UserBase>, IEquatable<string>, IComp
 
     public virtual bool Equals(string? other)
     {
-        if (other is null) return false;
-        if (Username is null) return false;
+        if (other is null)
+        {
+            return false;
+        }
+
+        if (Username is null)
+        {
+            return false;
+        }
+
         return Username.Equals(other);
     }
 
@@ -34,12 +42,12 @@ public abstract class UserBase : IEquatable<UserBase>, IEquatable<string>, IComp
         return Equals(other);
     }
 
-    public static bool operator==(UserBase a, UserBase b)
+    public static bool operator ==(UserBase a, UserBase b)
     {
         return a.Equals(b);
     }
 
-    public static bool operator!=(UserBase a, UserBase b)
+    public static bool operator !=(UserBase a, UserBase b)
     {
         return !a.Equals(b);
     }

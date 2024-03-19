@@ -1,6 +1,5 @@
-﻿using UserSystem;
-using Newtonsoft.Json;
-
+﻿using Newtonsoft.Json;
+using UserSystem;
 using JsonString = string;
 
 namespace CourseworkTooling;
@@ -44,7 +43,7 @@ public static class FileHandler
 
         T? data = json.Deserialize<T>();
 
-        if(data is T val)
+        if (data is T val)
         {
             return val;
         }
@@ -85,9 +84,12 @@ public static class FileHandler
         path ??= TypeToFilePathMap.ContainsKey(typeof(T)) ?
             TypeToFilePathMap[typeof(T)] : null;
 
-        if (path is null) return;
+        if (path is null)
+        {
+            return;
+        }
 
-        using StreamWriter sw = new StreamWriter(path, false);
+        using StreamWriter sw = new(path, false);
 
         sw.WriteLine(data);
     }

@@ -14,9 +14,9 @@ public static class StateHelper
     /// <returns>A combined state</returns>
     public static State AddState(this State a, State b)
     {
-        foreach(var kvp in b)
+        foreach (var kvp in b)
         {
-            if(!a.ContainsKey(kvp.Key))
+            if (!a.ContainsKey(kvp.Key))
             {
                 a.Add(kvp.Key, kvp.Value);
             }
