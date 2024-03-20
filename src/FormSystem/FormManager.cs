@@ -15,7 +15,6 @@ public static class FormManager
     {
         _master = new formMaster();
 
-
         Trigger<T>();
 
         if (callback is Action<formMaster> action)
