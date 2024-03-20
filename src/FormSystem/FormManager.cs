@@ -7,7 +7,7 @@ public static class FormManager
 {
     #region State Management
 
-    public static State GlobalState { get; set; } = new State();
+    internal static State GlobalState { get; set; } = new State();
 
     private static formMaster _master = new();
 

@@ -1,4 +1,4 @@
-global using State = System.Collections.Generic.Dictionary<System.Collections.Generic.IEnumerable<StateSystem.StateType>, object?>;
+﻿global using State = System.Collections.Generic.Dictionary<System.Collections.Generic.IEnumerable<StateSystem.StateType>, object?>;
 global using Password = (string Hashed, byte[] Salt);
 global using FormSystem;
 global using static FormSystem.FormManager;

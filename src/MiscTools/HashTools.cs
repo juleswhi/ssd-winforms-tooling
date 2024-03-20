@@ -25,7 +25,7 @@ public static class HashTools
         return (Encoding.UTF8.GetString(hashedPassword), salt);
     }
 
-    public static bool VerifyHash(UserBase user, string password)
+    public static bool VerifyHash(User user, string password)
     {
         byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
 

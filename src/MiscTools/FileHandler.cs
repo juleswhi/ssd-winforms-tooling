@@ -15,7 +15,7 @@ public static class FileHandler
     /// </summary>
     public static Dictionary<Type, string> TypeToFilePathMap = new()
     {
-        { typeof(UserBase), "users.json" },
+        { typeof(User), "users.json" },
     };
 
     /// <summary>

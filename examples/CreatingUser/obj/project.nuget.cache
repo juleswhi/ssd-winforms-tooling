@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "HcvCwCk8tbPi4FBqcjR94bcpEuBkEe0s9dybMSK8oqiRGXlVCRnPvkrm/iUVNKIca1IQlRpfKL1OsWY7Vi+k9w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\i hate windows\\Documents\\GitHub\\ssd-winforms-tooling\\examples\\CreatingUser\\CreatingUser.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\i hate windows\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\i hate windows\\.nuget\\packages\\ssdcourseworktooling\\1.0.1-alpha1\\ssdcourseworktooling.1.0.1-alpha1.nupkg.sha512"
+  ],
+  "logs": []
+}

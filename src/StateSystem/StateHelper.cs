@@ -1,5 +1,6 @@
 ﻿using System.CodeDom;
 using FormSystem;
+using UserSystem;
 
 namespace StateSystem;
 
@@ -26,6 +27,11 @@ public static class StateHelper
         }
 
         return a;
+    }
+
+    public static State GetGlobalState()
+    {
+        return FormManager.GlobalState;
     }
 
     public static State AddStates(params State[] states)
@@ -127,6 +133,17 @@ public static class StateHelper
         return StateFrom(obj, stateTypes);
     }
 
+    public static State GetState<T>(this T obj)
+    {
+        StateType[] stateTypes = typeof(T).Name switch
+        {
+            "User" => [STATE_USER],
+            _ => [FLAG]
+        };
+
+        return obj!.GetState(stateTypes);
+    }
+
     public static State StateFrom(object? obj, params StateType[] stateTypes)
     {
         return new State()
@@ -168,7 +185,7 @@ public static class StateHelper
 
     public static State GlobalStateRemove(State state)
     {
-        // Not implemented yet
+        FormManager.GlobalState = FormManager.GlobalState.Where(x => !state.ContainsKey(x.Key)).ToDictionary(x => x.Key, x => x.Value);
         return FlagFailure;
     }
 
