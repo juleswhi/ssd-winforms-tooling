@@ -33,10 +33,9 @@ partial class formMaster
         // 
         // panelHolder
         // 
-        panelHolder.Dock = DockStyle.Fill;
-        panelHolder.Location = new Point(0, 0);
+        panelHolder.Location = new Point(252, 174);
         panelHolder.Name = "panelHolder";
-        panelHolder.Size = new Size(800, 450);
+        panelHolder.Size = new Size(200, 100);
         panelHolder.TabIndex = 0;
         // 
         // formMaster

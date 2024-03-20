@@ -1,76 +1,67 @@
-﻿using StateSystem;
+﻿using FormSystem.Forms;
+using StateSystem;
 
 namespace FormSystem;
 
 public static class FormManager
 {
     #region State Management
+
     public static State GlobalState { get; set; } = new State();
 
-    public static Forms.formMaster GetActiveForm()
+    private static formMaster _master = new();
+
+    public static void Start<T>(Action<formMaster>? callback = null) where T : Form, new()
     {
-        Form? active = Form.ActiveForm;
+        _master = new formMaster();
 
-        if (active is null)
+
+        Trigger<T>();
+
+        if (callback is Action<formMaster> action)
         {
-            // Create form
-            return CreateForm<Forms.formMaster>()!;
+            action(_master);
         }
 
-        if (active is Forms.formMaster master)
-        {
-            return master;
-        }
-
-        throw new Exception($"Active form must be of type: {nameof(Forms.formMaster)}");
+        Application.Run(_master);
     }
 
     // Name "Activate" is already used as part of the Form namespace
     public static void Trigger<T>(State? state = null) where T : Form, new()
     {
+        state ??= new();
+
         T form = CreateForm<T>(state);
 
-        form.TopLevel = false;
-        form.Dock = DockStyle.Fill;
-        form.FormBorderStyle = FormBorderStyle.None;
-        form.Enabled = true;
-        form.Visible = true;
+        _master.LoadForm(form);
+    }
 
-        Panel? formHolder = GetActiveForm().Controls.OfType<Panel>().FirstOrDefault();
+    public static void Trigger<T>(params State[] state) where T : Form, new()
+    {
+        T form = CreateForm<T>(AddStates(state));
 
-        if (formHolder is null)
-        {
-            return;
-        }
+        _master.LoadForm(form);
+    }
 
-        formHolder.Controls.Clear();
-        formHolder.Controls.Add(form);
-        formHolder.Show();
+    public static void Trigger<T>(object obj, params StateType[] stateTypes)
+    {
+        State state = obj.GetState(stateTypes);
+
+        Trigger<T>(state);
     }
 
     // Create the form instance and pass both global state and scoped state
-    private static T CreateForm<T>(State? scopedState = null) where T : Form, new()
+    private static T CreateForm<T>(State? state = null) where T : Form, new()
     {
-        scopedState ??= new State();
+        state ??= new State();
 
-        T form = CreateFormInstace<T>();
+        T form = Activator.CreateInstance<T>();
 
-        form.PassStateToForm(scopedState.AddState(GlobalState));
+        form.PassStateToForm(state.AddState(GlobalState));
 
         return form;
     }
 
-    private static T CreateFormInstace<T>() where T : Form, new()
-    {
-        T instance = Activator.CreateInstance<T>();
-
-        if (instance is null)
-        {
-            return CreateFormInstace<T>();
-        }
-
-        return instance;
-    }
 
     private static void PassStateToForm<T>(this T instance, State state) where T : Form, new()
     {

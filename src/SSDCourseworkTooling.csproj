@@ -1,40 +1,39 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <LangVersion>preview</LangVersion>
-    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
-    <Title>SSD Coursework Tooling</Title>
-    <Version>0.1.0</Version>
-    <Authors>Jules White</Authors>
-    <Company>$(Authors), FSL</Company>
-    <Description>A collection of tools to improve the development experience of SSD Coursework
-</Description>
-    <PackageProjectUrl>https://github.com/juleswhi/ssd-winforms-tooling</PackageProjectUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/juleswhi/ssd-winforms-tooling</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageTags>winforms tooling, ssd, fsl, software systems development, jules white, ssd coursework, coursework, juleswhite, ssd tooling</PackageTags>
-    <PackageReleaseNotes>Initial Commit!. Added: Form System, Logging System, Misc Tools, Scraper, State System and a User System!</PackageReleaseNotes>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>preview</LangVersion>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>SSD Coursework Tooling</Title>
+		<Version>1.0.1</Version>
+		<Authors>Jules White</Authors>
+		<Company>$(Authors), FSL</Company>
+		<Description>A collection of tools to improve the development experience of SSD Coursework	</Description>
+		<PackageProjectUrl>https://github.com/juleswhi/ssd-winforms-tooling</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/juleswhi/ssd-winforms-tooling</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>winforms tooling; jules white; fsl; coursework; Software Systems Development; SSD; SSD Coursework; Tooling; Winforms</PackageTags>
+		<PackageReleaseNotes>State System!. </PackageReleaseNotes>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
 
 </Project>

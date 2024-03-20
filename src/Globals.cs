@@ -4,7 +4,9 @@ global using System.Reflection;
 
 // Scraper
 global using static Scraper.ScrapeType;
+
 // State
 global using static StateSystem.StateHelper;
+global using static StateSystem.StateType;
 global using State = System.Collections.Generic.Dictionary<System.Collections.Generic.IEnumerable<StateSystem.StateType>, object?>;
 
