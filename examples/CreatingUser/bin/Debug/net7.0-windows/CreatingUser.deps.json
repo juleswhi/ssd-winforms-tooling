@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v7.0": {
       "CreatingUser/1.0.0": {
         "dependencies": {
-          "SSDCourseworkTooling": "1.0.1-alpha1"
+          "SSDCourseworkTooling": "1.0.2.1-beta"
         },
         "runtime": {
           "CreatingUser.dll": {}
@@ -22,14 +22,14 @@
           }
         }
       },
-      "SSDCourseworkTooling/1.0.1-alpha1": {
+      "SSDCourseworkTooling/1.0.2.1-beta": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "lib/net7.0-windows7.0/SSDCourseworkTooling.dll": {
-            "assemblyVersion": "1.0.1.0",
-            "fileVersion": "1.0.1.0"
+            "assemblyVersion": "1.0.2.1",
+            "fileVersion": "1.0.2.1"
           }
         }
       }
@@ -48,12 +48,12 @@
       "path": "newtonsoft.json/13.0.3",
       "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
     },
-    "SSDCourseworkTooling/1.0.1-alpha1": {
+    "SSDCourseworkTooling/1.0.2.1-beta": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rdZMtnUQNz1b3GFt9JV+gBirxU0bZttlo2t9Bp4IOxuRc4oIrCAv0H92gTt8LB5qbIaUZ1JIBrWl79hTzjfOtQ==",
-      "path": "ssdcourseworktooling/1.0.1-alpha1",
-      "hashPath": "ssdcourseworktooling.1.0.1-alpha1.nupkg.sha512"
+      "sha512": "sha512-60sQgcyCTRhdeTBpqEK+BUCFFc2YY9CMaU8DvyyyHt3yvnTdeATBMHHNVV5LJnr0kC4USyaZqxyRLpE+28nQIg==",
+      "path": "ssdcourseworktooling/1.0.2.1-beta",
+      "hashPath": "ssdcourseworktooling.1.0.2.1-beta.nupkg.sha512"
     }
   }
 }

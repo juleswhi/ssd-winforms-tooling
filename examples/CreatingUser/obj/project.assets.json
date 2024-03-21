@@ -15,7 +15,7 @@
           }
         }
       },
-      "SSDCourseworkTooling/1.0.1-alpha1": {
+      "SSDCourseworkTooling/1.0.2.1-beta": {
         "type": "package",
         "dependencies": {
           "Newtonsoft.Json": "13.0.3"
@@ -63,23 +63,23 @@
         "packageIcon.png"
       ]
     },
-    "SSDCourseworkTooling/1.0.1-alpha1": {
-      "sha512": "rdZMtnUQNz1b3GFt9JV+gBirxU0bZttlo2t9Bp4IOxuRc4oIrCAv0H92gTt8LB5qbIaUZ1JIBrWl79hTzjfOtQ==",
+    "SSDCourseworkTooling/1.0.2.1-beta": {
+      "sha512": "60sQgcyCTRhdeTBpqEK+BUCFFc2YY9CMaU8DvyyyHt3yvnTdeATBMHHNVV5LJnr0kC4USyaZqxyRLpE+28nQIg==",
       "type": "package",
-      "path": "ssdcourseworktooling/1.0.1-alpha1",
+      "path": "ssdcourseworktooling/1.0.2.1-beta",
       "files": [
         ".nupkg.metadata",
         "LICENSE",
         "README.md",
         "lib/net7.0-windows7.0/SSDCourseworkTooling.dll",
-        "ssdcourseworktooling.1.0.1-alpha1.nupkg.sha512",
+        "ssdcourseworktooling.1.0.2.1-beta.nupkg.sha512",
         "ssdcourseworktooling.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     "net7.0-windows7.0": [
-      "SSDCourseworkTooling >= 1.0.1-alpha1"
+      "SSDCourseworkTooling >= 1.0.2.1-beta"
     ]
   },
   "packageFolders": {
@@ -131,7 +131,7 @@
         "dependencies": {
           "SSDCourseworkTooling": {
             "target": "Package",
-            "version": "[1.0.1-alpha1, )"
+            "version": "[1.0.2.1-beta, )"
           }
         },
         "imports": [

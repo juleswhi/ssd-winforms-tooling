@@ -1,14 +1,14 @@
 ﻿namespace FormSystem.Forms;
 
-public partial class formMaster : Form
+public partial class formMaster : Form, IFormMaster
 {
-    public Func<Panel>? GetHolder { get; set; } = null;
     public formMaster()
     {
         InitializeComponent();
         panelHolder.Dock = DockStyle.Fill;
-        GetHolder = () => panelHolder;
     }
+
+    public Panel GetHolder() => panelHolder;
 
     public void LoadForm(Form form)
     {
@@ -25,5 +25,4 @@ public partial class formMaster : Form
 
         Refresh();
     }
-
 }

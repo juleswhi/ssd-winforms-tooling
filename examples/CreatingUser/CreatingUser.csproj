@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SSDCourseworkTooling" Version="1.0.1-alpha1" />
+    <PackageReference Include="SSDCourseworkTooling" Version="1.0.2.1-beta" />
   </ItemGroup>
 
 </Project>

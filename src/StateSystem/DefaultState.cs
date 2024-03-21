@@ -3,8 +3,8 @@
 /// <summary>
 /// A default implementation of the IState interface
 /// </summary>
-public abstract class DefaultState : IState
+public interface IDefaultState : IState
 {
-    public virtual void State(State state)
-    { }
+    public new void State(State state)
+    {}
 }

@@ -8,13 +8,13 @@ These tools also provide a base that your application can build upon.
 Dotnet CLI:
 
 ```
-dotnet add package SSDCourseworkTooling --version 0.1.0
+dotnet add package SSDCourseworkTooling 
 ```
 
 NuGet Package Manager:
 
 ```
-NuGet\Install-Package WinFormsScraper -Version 1.3.0
+NuGet\Install-Package SSDCourseworkTooling 
 ```
 
 Visual Studio NuGet:

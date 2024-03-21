@@ -19,3 +19,4 @@ C:\Users\i hate windows\Documents\GitHub\ssd-winforms-tooling\examples\CreatingU
 C:\Users\i hate windows\Documents\GitHub\ssd-winforms-tooling\examples\CreatingUser\obj\Debug\net7.0-windows\CreatingUser.pdb
 C:\Users\i hate windows\Documents\GitHub\ssd-winforms-tooling\examples\CreatingUser\obj\Debug\net7.0-windows\CreatingUser.genruntimeconfig.cache
 C:\Users\i hate windows\Documents\GitHub\ssd-winforms-tooling\examples\CreatingUser\obj\Debug\net7.0-windows\ref\CreatingUser.dll
+C:\Users\i hate windows\Documents\GitHub\ssd-winforms-tooling\examples\CreatingUser\obj\Debug\net7.0-windows\CreatingUser.formMainMainMain.resources
