@@ -1,4 +1,5 @@
-﻿using FormSystem;
+﻿using ExceptionSystem.ToolingExceptions;
+using FormSystem;
 
 namespace StateSystem;
 
@@ -187,6 +188,198 @@ public static class StateHelper
         return FlagFailure;
     }
 
+    public static State CreateSuccess(this object data)
+    {
+        return data.GetState(FLAG_SUCCESS);
+    }
+
+    /// <summary>
+    /// This unwraps a value, and calls an action if it was null
+    /// </summary>
+    /// <typeparam name="T">The type to cast to</typeparam>
+    /// <param name="state">The state to check for Success</param>
+    /// <param name="ifNull">The action to run if the value was null</param>
+    /// <returns>A Success State</returns>
+    public static State IfNull<T>(this State state, Action? ifNull = null)
+    {
+        ifNull ??= EmptyAction();
+        T? val = state.GetFirst<T>(FLAG_SUCCESS);
+
+        if(val is null)
+        {
+            ifNull();
+            return FlagFailure;
+        }
+
+        return val.CreateSuccess();
+    }
+
+    /// <summary>
+    /// This checks if a value is null, if it is then run some code, if not return a state with the non null value
+    /// </summary>
+    /// <param name="state">The state to check for success</param>
+    /// <param name="ifNull">The action to call if the value is null</param>
+    /// <returns>A Success State</returns>
+    public static State IfNull(this State state, Action? ifNull = null)
+    {
+        ifNull ??= EmptyAction();
+        object? val = state.GetFirst(FLAG_SUCCESS);
+
+        if(val is null)
+        {
+            ifNull();
+            return FlagFailure;
+        }
+
+        return val.CreateSuccess().AddState(FlagNonNull);
+    }
+
+    /// <summary>
+    /// This can be chained onto the end of a IfNull. It will unwrap only if not null
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="state"></param>
+    /// <returns></returns>
+    /// <exception cref="UnwrapException"></exception>
+    public static State ElseUnwrap<T>(this State state, out T? obj)
+    {
+        T? a = state.GetFirst<T>(FLAG_SUCCESS);
+
+        if(a is null)
+        {
+            obj = default;
+            return FlagFailure;
+        }
+
+        if(!state.Has(FLAG_NONNULL) || state.IsFailure())
+        {
+            obj = default;
+            return FlagFailure;
+        }
+
+        obj = a!;
+        return FlagSuccess;
+    }
+
+    public static State ElseUnwrap(this State state, out object? obj)
+    {
+        object? a = state.GetFirst(FLAG_SUCCESS);
+
+        if(a is null)
+        {
+            obj = default;
+            return FlagFailure;
+        }
+
+        if(!state.Has(FLAG_NONNULL) || state.IsFailure())
+        {
+            obj = default;
+            return FlagFailure;
+        }
+
+        obj = a!;
+        return FlagSuccess;
+    }
+
+    /// <summary>
+    /// This gains the not-null value of a State. This will error if the value is null
+    /// </summary>
+    /// <typeparam name="T">The type to grab</typeparam>
+    /// <param name="state">The state to check against</param>
+    /// <returns>The object of type T</returns>
+    /// <exception cref="UnwrapException"></exception>
+    public static T Unwrap<T>(this State state)
+    {
+        T? val = state.GetFirst<T>(FLAG_SUCCESS);
+
+        if(val is null)
+        {
+            throw new UnwrapException($"Could not unwrap null value");
+        }
+
+        return val!;
+    }
+
+    /// <summary>
+    /// This gains the not-null value of a State. This will error if the value is null
+    /// </summary>
+    /// <param name="state">The state to check against</param>
+    /// <returns>The object found</returns>
+    /// <exception cref="UnwrapException"></exception>
+    public static object Unwrap(this State state)
+    {
+        object? val = state.GetFirst(FLAG_SUCCESS);
+
+        if(val is null)
+        {
+            throw new UnwrapException($"Could not unwrap null value");
+        }
+
+        return val!;
+    }
+
+    /// <summary>
+    /// Unwraps all values that have success. Will error if null.
+    /// </summary>
+    /// <typeparam name="T">The type to cast the values to</typeparam>
+    /// <param name="state">The state to check for Success</param>
+    /// <returns>An IEnumerable of the type T</returns>
+    /// <exception cref="UnwrapException"></exception>
+    public static IEnumerable<T> UnwrapAll<T>(this State state)
+    {
+        IEnumerable<T?>? val = state.Get<T>(FLAG_SUCCESS);
+
+        if(val is null || val.Any(x => x is null))
+        {
+            throw new UnwrapException($"Could not unwrap null value");
+        }
+
+        return val!;
+    }
+
+    /// <summary>
+    /// Unwraps all values that have success. Will error if null.
+    /// </summary>
+    /// <param name="state">The state to check for success</param>
+    /// <returns>An IEnumerable of objects</returns>
+    /// <exception cref="UnwrapException"></exception>
+    public static IEnumerable<object> UnwrapAll(this State state)
+    {
+        IEnumerable<object?>? val = state.Get(FLAG_SUCCESS);
+
+        if(val is null || val.Any(x => x is null))
+        {
+            throw new UnwrapException($"Could not unwrap on a null value");
+        }
+
+        return val!;
+    }
+
+
+
+    /// <summary>
+    /// Unwraps a value, but allows null
+    /// </summary>
+    /// <param name="state">The state to look for Success</param>
+    /// <returns>A nullable object</returns>
+    public static object? NUnwrap(this State state)
+    {
+        return state.GetFirst(FLAG_SUCCESS);
+    }
+
+    /// <summary>
+    /// Unwraps a value, but allows null
+    /// </summary>
+    /// <typeparam name="T">The type to cast to</typeparam>
+    /// <param name="state">The state to look  for Success</param>
+    /// <returns></returns>
+    public static T? NUnwrap<T>(this State state)
+    {
+        return state.GetFirst<T>(FLAG_SUCCESS);
+    }
+
     public static State FlagSuccess => StateFrom(FLAG_SUCCESS);
     public static State FlagFailure => StateFrom(FLAG_FAILURE);
+    public static State FlagNull => StateFrom(FLAG_NULL);
+    public static State FlagNonNull => StateFrom(FLAG_NONNULL);
 }

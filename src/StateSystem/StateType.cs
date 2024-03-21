@@ -16,5 +16,8 @@ public enum StateType
     FLAG,
     FLAG_ACTIVE_USER,
     FLAG_SUCCESS,
-    FLAG_FAILURE
+    FLAG_FAILURE,
+
+    FLAG_NONNULL,
+    FLAG_NULL
 }
