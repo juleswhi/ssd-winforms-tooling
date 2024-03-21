@@ -1,5 +1,4 @@
 ﻿using ExceptionSystem.ToolingExceptions;
-using FormSystem;
 
 namespace StateSystem;
 
@@ -184,7 +183,7 @@ public static class StateHelper
 
     public static State GlobalStateRemove(State state)
     {
-        FormManager.GlobalState = FormManager.GlobalState.Where(x => !state.ContainsKey(x.Key)).ToDictionary(x => x.Key, x => x.Value);
+        FormManager.GlobalState = (State)FormManager.GlobalState.Where(x => !state.ContainsKey(x.Key)).ToDictionary(x => x.Key, x => x.Value);
         return FlagFailure;
     }
 
@@ -354,7 +353,6 @@ public static class StateHelper
 
         return val!;
     }
-
 
 
     /// <summary>

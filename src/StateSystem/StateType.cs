@@ -19,5 +19,8 @@ public enum StateType
     FLAG_FAILURE,
 
     FLAG_NONNULL,
-    FLAG_NULL
+    FLAG_NULL,
+
+    FLAG_IDENTIFIER,
+    FLAG_VALUE
 }
